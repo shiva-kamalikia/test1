@@ -1,0 +1,551 @@
+<html>
+    <head>
+        <title>filimo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            @font-face {
+                font-family: Vazir;
+                src: url('vazir/Vazirmatn-Light.woff2') format('woff2');
+                font-weight: 300;
+                font-style: normal;
+                font-display: swap;
+            }
+            @font-face {
+                font-family: Vazir;
+                src: url('vazir/Vazirmatn-Regular.woff2') format('woff2');
+                font-weight: 400;
+                font-style: normal;
+                font-display: swap;
+            }
+            @font-face {
+                font-family: Vazir;
+                src: url('vazir/Vazirmatn-Medium.woff2') format('woff2');
+                font-weight: 500;
+                font-style: normal;
+                font-display: swap;
+            }
+            body {
+                margin: 0;
+                direction: rtl;
+                font-family: vazir, sans-serif;
+                background-color: #000;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            ul, ol {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            a {
+                text-decoration: none;
+            }
+            h1, h2, h3, h4, h5, h6, p {
+                margin: 0;
+                padding: 0;
+            }
+            .wrapper {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            .header {
+                background-color: rgba(0, 0, 0, 0.8);
+                color: #fff;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 4;
+                position: fixed;
+                padding: 10px;
+            }
+            .header .header-wrapper {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .header .header-wrapper .mobile-menu, .header .header-wrapper .mobile-logo {
+                display: none;
+            }
+            .header .header-wrapper .mobile-logo {
+                position: absolute;
+                transform: translateX(-50%,-50%);
+                left: 50%;
+                width: 10%;
+                height: auto;
+                object-fit: cover;
+            }
+            .header .header-wrapper .right{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 70px;
+            }
+            .header .header-wrapper .right .logo img {
+                width: 100px;
+                height: 100%;
+            }
+            .header .header-wrapper .right ul {
+                display: flex;
+                flex-direction: row;
+                gap: 30px;
+            }
+            .header .header-wrapper .right ul a {
+                color: #fff;
+                font-size: 12px;
+            }
+            .header .header-wrapper .left {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 15px;
+            }
+            .header .header-wrapper .left .search {
+                background-color: rgb(28, 166, 120);
+                padding: 6px;
+                font-size: 13px;
+                border-radius: 5px;
+            }
+            .header .header-wrapper .left .login {
+                background-color: rgb(61, 58, 58);
+                padding: 6px;
+                font-size: 13px;
+                border-radius: 5px;
+            }
+            .hero-section {
+                background-image: url(img/mov_cvr_141218_6942.webp);
+                width: 100%;
+                height: 360px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                position: relative;
+            }
+            .hero-section .hero-section-hover {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+            }
+            .hero-section .hero-section-wrapper {
+                display: flex;
+                width: 100%;
+                gap: 30px;
+                padding: 70px 80px 0 0;
+                position: relative;
+                z-index: 3;
+                color: #fff;
+                font-size: 11px;
+            }
+            .hero-section .hero-section-wrapper .hero-content .content .cont {
+                padding: 12px;
+            }
+            .hero-section .hero-section-wrapper .content .cont3 {
+                background-color: darkcyan;
+                border-radius: 20px;
+                font-size: 10px;
+                padding: 4px;
+                display: inline-block;
+            }
+            .hero-section .hero-section-wrapper .content .cont4 {
+                color: darkgoldenrod;
+                padding: 4px 0;
+            }
+            .hero-section .hero-section-wrapper .hero-content .dram,
+            .hero-section .hero-section-wrapper .hero-content .family,
+            .hero-section .hero-section-wrapper .hero-content .sin {
+                display: inline-block;
+                background-color: rgb(49, 47, 47);
+                padding: 8px;
+                line-height: 4px;
+            }
+            .movie-list{
+                padding: 20px;
+                color: #fff;
+            }
+            .movie-list .header-movie-list {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .movie-list .header-movie-list .title p {
+                color: #fff;
+                font-size: 12px;
+            }
+            .movie-list .header-movie-list .more a {
+                color: #fff;
+                font-size: 12px;
+                color: darkorange;
+            }
+            .movie-list .items ul {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .movie-list .items ul li {
+                width: 25%;
+                position: relative;
+                padding: 8px 3px ;
+            }
+            .movie-list .items ul li:hover .overlay, .movie-list .items ul li:hover .hover-box {
+                opacity: 1;
+                visibility: visible;
+            }
+            .movie-list .items ul li a .poster {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+            .movie-list .items ul li a .irancell {
+                position: absolute;
+                left: 14px;
+                top: 14px;
+                background-color: #1cb561;
+                font-size: 12px;
+                color: #fff;
+                border-radius: 12px;
+                display: inline-block;
+                padding: 3px 8px;
+            }
+            .movie-list .items ul li a .red {
+                background-color: red;
+                padding: 3px 8px;
+            }
+
+            .movie-list .items ul li a .copy-right {
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .movie-list .items ul li a .overlay {
+                opacity: 0;
+                visibility: hidden;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.4);
+                transition: all 1s;
+            }
+            .movie-list .items ul li a .hover-box {
+                opacity: 0;
+                visibility: hidden;
+                position: absolute;
+                bottom: 50px;
+                right: 20px;
+                color: #fff;
+                transition: all 1s;
+                font-size: 12px;
+            }
+            @media (max-width: 950px) {
+                .hero-section {
+                    height: 300px;
+                }  
+                .hero-section .hero-section-wrapper {
+                    padding: 60px 40px 0 0;
+                } 
+                .hero-section .hero-section-wrapper .hero-content .content .cont {
+                    padding: 7px;
+                } 
+            }
+            @media (max-width: 850px) {
+                .movie-list .items ul li {
+                    width: 33.33%;
+                }
+                body {
+                    font-size: 10px;
+                }
+                .movie-list .items ul li a .irancell {
+                    font-size: 8px;
+                    top: 10px;
+                    left: 8px;
+                }
+                .hero-section .hero-section-wrapper {
+                    padding: 50px 20px 0 0;
+                }
+                .hero-section .hero-section-wrapper .hero-content .content .cont {
+                    padding: 6px;
+                }
+                .hero-section {
+                    height: 300px;
+                }
+            }
+            @media (max-width: 700px) {
+                .movie-list .items ul li {
+                 width: 50%;
+                }
+                .header .header-wrapper .right {
+                    display: none;
+                }
+                .header .header-wrapper .mobile-menu {
+                display: block;
+                }
+                .header .header-wrapper .mobile-logo {
+                    display: block;
+                }
+                .header .header-wrapper .left .search, .header .header-wrapper .left .login {
+                    font-size: 10px;
+                    padding: 0 8px;
+                }
+            }
+            @media (max-width: 500px) {
+                    .movie-list .items ul li {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="wrapper">
+                <div class="header-wrapper">
+                    <div class="mobile-menu">
+                        <img src="img/Hamburger_icon.svg"/>
+                    </div>
+                    <div class="right">
+                        <div class="logo">
+                            <a href="#"><img src="img/fa-filimo-dark-logo.svg"></a>
+                        </div>
+                        <ul class="menu">
+                            <li><a href="#">فیلیموتور</a></li>
+                            <li><a href="#">فیلیمو مدرسه</a></li>
+                            <li><a href="#">جستجو</a></li>
+                        </ul>
+                    </div>
+                    <div class="mobile-logo">
+                        <img src="img/fa-filimo-dark-logo.svg">
+                    </div>
+                    <div class="left">
+                        <div class="search">خرید اشتراک</div>
+                        <div class="login">ورود</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-section">
+            <div class="hero-section-hover"></div>
+            <div class="wrapper">
+                <div class="hero-section-wrapper">
+                    <div class="hero-logo">
+                        <img src="img/mov_141218_70860.webp">
+                    </div>
+                    <div class="hero-content">
+                        <ul class="content">
+                            <li class="cont cont1">سریال گناه فرشته</li>
+                            <li class="cont cont2">Fereshteh's sin</li>
+                            <li class="cont cont3">%92 (491,393)</li>
+                            <li class="cont cont4">مناسب برای بالای 15 سال</li>
+                            <li class="cont cont5">جمعه‌ها ساعت 8 صبح</li>
+                            <li class="cont cont6">کارگردان: حامد عنقا</li>
+                            <li class="cont cont7">محصول ایران-1402</li>
+                        </ul>
+                        <p class="dram">درام</p>
+                        <p class="family">خانوادگی</p>
+                        <p class="sin">1فصل‌و8قسمت</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="movie-list">
+            <div class="wrapper">
+                <div class="header-movie-list">
+                    <div class="title">
+                    <p>ویژه رایگان</p>
+                    </div>
+                    <div class="more">
+                        <a href="#">مشاهده همه</a>
+                    </div>
+                 </div>
+                <div class="items">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_141218_70860.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</h4>
+                                    <h4> 1402-درام-خانوادگی</h4>                                       
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_143758_72222.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</h4>
+                                    <h4> 1402-درام-خانوادگی</h4>                                       
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_144727_152148.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</h4>
+                                    <h4> 1402-درام-خانوادگی</h4>                                       
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_144857_152154.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</h4>
+                                    <h4> 1402-درام-خانوادگی</h4>                                       
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_144861_152101.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</h4>
+                                    <h4> 1402-درام-خانوادگی</h4>                                       
+                                </div>
+                            </a>
+                        </li><li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_144885_152152.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</h4>
+                                    <h4> 1402-درام-خانوادگی</h4>                                       
+                                </div>
+                            </a>
+                        </li><li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_144910_152275.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</h4>
+                                    <h4> 1402-درام-خانوادگی</h4>                                       
+                                </div>
+                            </a>
+                        </li><li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_144911_152341 (1).webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</h4>
+                                    <h4> 1402-درام-خانوادگی</h4>                                       
+                                </div>
+                            </a>
+                        </li><li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_144938_152307.webp"/>
+                                <span class="irancell red">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</h4>
+                                    <h4> 1402-درام-خانوادگی</h4>                                       
+                                </div>
+                            </a>
+                        </li><li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_144938_152307.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</br> 1402-درام-خانوادگی </h4>                                      
+                                </div>
+                            </a>
+                        </li><li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_144953_152343.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</br> 1402-درام-خانوادگی </h4>                                      
+                                </div>
+                            </a>
+                        </li><li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_144978_152339.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</br> 1402-درام-خانوادگی </h4>                                      
+                                </div>
+                            </a>
+                        </li><li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_cvr_141218_6942.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</br> 1402-درام-خانوادگی </h4>                                      
+                                </div>
+                            </a>
+                        </li><li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_144728_152277.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</br> 1402-درام-خانوادگی </h4>                                      
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_141218_70860.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</h4>
+                                    <h4> 1402-درام-خانوادگی</h4>                                       
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img  class="poster" src="img/mov_143758_72222.webp"/>
+                                <span class="irancell">رایگان ایرانسلی</span>
+                                <img  class="copy-right" src="img/exclusive-fa.svg">
+                                <div class="overlay"></div>
+                                <div class="hover-box">
+                                    <h4>گناه فرشته-فصل1قسمت8</h4>
+                                    <h4> 1402-درام-خانوادگی</h4>                                       
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+    </body>
+</html>
