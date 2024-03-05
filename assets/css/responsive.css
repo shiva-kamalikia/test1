@@ -1,0 +1,11 @@
+@media (max-width: 600px) {
+    .header .logo a {
+        font-size: 2rem;
+    }
+    .hero-section .hero-content .col-10 h1 {
+        font-size: 4rem;
+    }
+    .hero-section .hero-content p {
+        font-size: 1.1rem;
+    }
+}
