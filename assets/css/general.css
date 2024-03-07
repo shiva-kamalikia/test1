@@ -9,6 +9,7 @@ html {
 body {
     direction: ltr;
     font-family: "Mukta Mahee", Arial, Helvetica, sans-serif;
+    line-height: 1.8;
 }
 a {
     text-decoration: none;
@@ -17,7 +18,27 @@ ul, ol {
     list-style: none;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Abril Fatface";
+    font-family: "Abril Fatface", Arial, Helvetica, sans-serif;
+}
+h2 {
+    font-size: 3rem;
+}
+h3 {
+    font-size: 2.8rem;
+}
+h4 {
+    font-size: 2.6rem;
+}
+h5 {
+    font-size: 2.4rem;
+}
+h6 {
+    font-size: 2.2rem;
+}
+p {
+    font-size: 1.8rem;
+    font-weight: 200;
+    color: #6c757d;
 }
 .wrapper {
     width: 100%;
@@ -55,6 +76,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 .text-align-center {
     text-align: center;
+}
+.uppercase {
+    text-transform: uppercase;
 }
 .col-1{
     flex-basis: 8.33%;
@@ -107,6 +131,21 @@ h1, h2, h3, h4, h5, h6 {
 .pt-5 {
     padding-top: 30px;
 }
+.pb-1 {
+    padding-bottom: 10px;
+}
+.pb-2 {
+    padding-bottom: 15px;
+}
+.pb-3 {
+    padding-bottom: 20px;
+}
+.pb-4 {
+    padding-bottom: 25px;
+}
+.pb-5 {
+    padding-bottom: 30px;
+}
 .mt-1 {
     margin-top: 10px;
 }
@@ -121,4 +160,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 .mt-5 {
     margin-top: 30px;
+}
+[class^="col-"] {
+    padding: 0 20px;
+}
+.section-space {
+    padding: 12rem 0;
 }
